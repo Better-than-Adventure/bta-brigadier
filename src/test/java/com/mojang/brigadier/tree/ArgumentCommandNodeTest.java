@@ -7,15 +7,15 @@ import com.google.common.testing.EqualsTester;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.builder.RequiredArgumentBuilder;
+import com.mojang.brigadier.builder.ArgumentBuilderRequired;
 import com.mojang.brigadier.context.CommandContextBuilder;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mojang.brigadier.arguments.IntegerArgumentType.integer;
-import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
+import static com.mojang.brigadier.arguments.ArgumentTypeInteger.integer;
+import static com.mojang.brigadier.builder.ArgumentBuilderRequired.argument;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
@@ -89,7 +89,7 @@ public class ArgumentCommandNodeTest extends AbstractCommandNodeTest {
 
     @Test
     public void testCreateBuilder() throws Exception {
-        final RequiredArgumentBuilder<Object, Integer> builder = node.createBuilder();
+        final ArgumentBuilderRequired<Object, Integer> builder = node.createBuilder();
         assertThat(builder.getName(), is(node.getName()));
         assertThat(builder.getType(), is(node.getType()));
         assertThat(builder.getRequirement(), is(node.getRequirement()));

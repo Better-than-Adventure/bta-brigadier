@@ -8,7 +8,7 @@ import com.google.common.testing.EqualsTester;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.ArgumentBuilderLiteral;
 import com.mojang.brigadier.context.CommandContextBuilder;
 import com.mojang.brigadier.context.StringRange;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -18,7 +18,7 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mojang.brigadier.builder.LiteralArgumentBuilder.literal;
+import static com.mojang.brigadier.builder.ArgumentBuilderLiteral.literal;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -128,7 +128,7 @@ public class LiteralCommandNodeTest extends AbstractCommandNodeTest {
 
     @Test
     public void testCreateBuilder() throws Exception {
-        final LiteralArgumentBuilder<Object> builder = node.createBuilder();
+        final ArgumentBuilderLiteral<Object> builder = node.createBuilder();
         assertThat(builder.getLiteral(), is(node.getLiteral()));
         assertThat(builder.getRequirement(), is(node.getRequirement()));
         assertThat(builder.getCommand(), is(node.getCommand()));

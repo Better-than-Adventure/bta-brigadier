@@ -17,7 +17,7 @@ import org.openjdk.jmh.annotations.State;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.mojang.brigadier.builder.LiteralArgumentBuilder.literal;
+import static com.mojang.brigadier.builder.ArgumentBuilderLiteral.literal;
 
 @State(Scope.Benchmark)
 public class ExecuteBenchmarks {

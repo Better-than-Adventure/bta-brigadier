@@ -13,15 +13,15 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.mojang.brigadier.arguments.LongArgumentType.longArg;
+import static com.mojang.brigadier.arguments.ArgumentTypeLong.longArg;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LongArgumentTypeTest {
-    private LongArgumentType type;
+public class ArgumentTypeLongTest {
+    private ArgumentTypeLong type;
     @Mock
     private CommandContextBuilder<Object> context;
 

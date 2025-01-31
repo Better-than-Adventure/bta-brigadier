@@ -9,21 +9,21 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import static com.mojang.brigadier.arguments.IntegerArgumentType.integer;
-import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
+import static com.mojang.brigadier.arguments.ArgumentTypeInteger.integer;
+import static com.mojang.brigadier.builder.ArgumentBuilderRequired.argument;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class LiteralArgumentBuilderTest {
-    private LiteralArgumentBuilder<Object> builder;
+public class ArgumentBuilderLiteralTest {
+    private ArgumentBuilderLiteral<Object> builder;
     @Mock
     private
     Command<Object> command;
 
     @Before
     public void setUp() throws Exception {
-        builder = new LiteralArgumentBuilder<>("foo");
+        builder = new ArgumentBuilderLiteral<>("foo");
     }
 
     @Test

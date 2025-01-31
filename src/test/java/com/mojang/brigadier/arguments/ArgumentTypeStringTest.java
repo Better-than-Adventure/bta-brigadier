@@ -10,10 +10,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.mojang.brigadier.arguments.StringArgumentType.escapeIfRequired;
-import static com.mojang.brigadier.arguments.StringArgumentType.greedyString;
-import static com.mojang.brigadier.arguments.StringArgumentType.string;
-import static com.mojang.brigadier.arguments.StringArgumentType.word;
+import static com.mojang.brigadier.arguments.ArgumentTypeString.escapeIfRequired;
+import static com.mojang.brigadier.arguments.ArgumentTypeString.greedyString;
+import static com.mojang.brigadier.arguments.ArgumentTypeString.string;
+import static com.mojang.brigadier.arguments.ArgumentTypeString.word;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.is;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class StringArgumentTypeTest {
+public class ArgumentTypeStringTest {
     @Mock
     private CommandContextBuilder<Object> context;
 

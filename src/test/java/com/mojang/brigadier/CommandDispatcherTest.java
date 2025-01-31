@@ -4,9 +4,9 @@
 package com.mojang.brigadier;
 
 import com.google.common.collect.Lists;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.mojang.brigadier.builder.RequiredArgumentBuilder;
+import com.mojang.brigadier.arguments.ArgumentTypeInteger;
+import com.mojang.brigadier.builder.ArgumentBuilderLiteral;
+import com.mojang.brigadier.builder.ArgumentBuilderRequired;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.context.CommandContextBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -23,10 +23,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static com.mojang.brigadier.arguments.IntegerArgumentType.getInteger;
-import static com.mojang.brigadier.arguments.IntegerArgumentType.integer;
-import static com.mojang.brigadier.builder.LiteralArgumentBuilder.literal;
-import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
+import static com.mojang.brigadier.arguments.ArgumentTypeInteger.getInteger;
+import static com.mojang.brigadier.arguments.ArgumentTypeInteger.integer;
+import static com.mojang.brigadier.builder.ArgumentBuilderLiteral.literal;
+import static com.mojang.brigadier.builder.ArgumentBuilderRequired.argument;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
@@ -309,10 +309,10 @@ public class CommandDispatcherTest {
         final CommandDispatcher<Integer> subject = new CommandDispatcher<>();
 
         final RootCommandNode<Integer> root = subject.getRoot();
-        final LiteralArgumentBuilder<Integer> add = literal("add");
-        final LiteralArgumentBuilder<Integer> blank = literal("blank");
-        final RequiredArgumentBuilder<Integer, Integer> addArg = argument("value", integer());
-        final LiteralArgumentBuilder<Integer> run = literal("run");
+        final ArgumentBuilderLiteral<Integer> add = literal("add");
+        final ArgumentBuilderLiteral<Integer> blank = literal("blank");
+        final ArgumentBuilderRequired<Integer, Integer> addArg = argument("value", integer());
+        final ArgumentBuilderLiteral<Integer> run = literal("run");
 
         subject.register(add.then(addArg.redirect(root, c -> c.getSource() + getInteger(c, "value"))));
         subject.register(blank.redirect(root));
@@ -334,8 +334,8 @@ public class CommandDispatcherTest {
         final CommandDispatcher<Integer> subject = new CommandDispatcher<>();
 
         final RootCommandNode<Integer> root = subject.getRoot();
-        final LiteralArgumentBuilder<Integer> add = literal("add");
-        final RequiredArgumentBuilder<Integer, Integer> addArg = argument("value", integer());
+        final ArgumentBuilderLiteral<Integer> add = literal("add");
+        final ArgumentBuilderRequired<Integer, Integer> addArg = argument("value", integer());
 
         subject.register(add.then(
             addArg
@@ -386,7 +386,7 @@ public class CommandDispatcherTest {
     public void testIncompleteRedirectShouldThrow() {
         final LiteralCommandNode<Object> foo = subject.register(literal("foo")
             .then(literal("bar")
-                .then(argument("value", integer()).executes(context -> IntegerArgumentType.getInteger(context, "value"))))
+                .then(argument("value", integer()).executes(context -> ArgumentTypeInteger.getInteger(context, "value"))))
             .then(literal("awa").executes(context -> 2)));
         subject.register(literal("baz").redirect(foo));
         try {
@@ -401,7 +401,7 @@ public class CommandDispatcherTest {
     public void testRedirectModifierEmptyResult() throws CommandSyntaxException {
         final LiteralCommandNode<Object> foo = subject.register(literal("foo")
             .then(literal("bar")
-                .then(argument("value", integer()).executes(context -> IntegerArgumentType.getInteger(context, "value"))))
+                .then(argument("value", integer()).executes(context -> ArgumentTypeInteger.getInteger(context, "value"))))
             .then(literal("awa").executes(context -> 2)));
         final RedirectModifier<Object> emptyModifier = context -> Collections.emptyList();
         subject.register(literal("baz").fork(foo, emptyModifier));

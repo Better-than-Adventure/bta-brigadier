@@ -3,7 +3,7 @@
 
 package com.mojang.brigadier;
 
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.ArgumentBuilderLiteral;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.context.CommandContextBuilder;
 import com.mojang.brigadier.context.ContextChain;
@@ -95,7 +95,7 @@ public class CommandDispatcher<S> {
      * @param command a literal argument builder to add to this command tree
      * @return the node added to this tree
      */
-    public LiteralCommandNode<S> register(final LiteralArgumentBuilder<S> command) {
+    public LiteralCommandNode<S> register(final ArgumentBuilderLiteral<S> command) {
         final LiteralCommandNode<S> build = command.build();
         root.addChild(build);
         return build;

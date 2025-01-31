@@ -10,23 +10,23 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class StringArgumentType implements ArgumentType<String> {
+public class ArgumentTypeString implements ArgumentType<String> {
     private final StringType type;
 
-    private StringArgumentType(final StringType type) {
+    private ArgumentTypeString(final StringType type) {
         this.type = type;
     }
 
-    public static StringArgumentType word() {
-        return new StringArgumentType(StringType.SINGLE_WORD);
+    public static ArgumentTypeString word() {
+        return new ArgumentTypeString(StringType.SINGLE_WORD);
     }
 
-    public static StringArgumentType string() {
-        return new StringArgumentType(StringType.QUOTABLE_PHRASE);
+    public static ArgumentTypeString string() {
+        return new ArgumentTypeString(StringType.QUOTABLE_PHRASE);
     }
 
-    public static StringArgumentType greedyString() {
-        return new StringArgumentType(StringType.GREEDY_PHRASE);
+    public static ArgumentTypeString greedyString() {
+        return new ArgumentTypeString(StringType.GREEDY_PHRASE);
     }
 
     public static String getString(final CommandContext<?> context, final String name) {

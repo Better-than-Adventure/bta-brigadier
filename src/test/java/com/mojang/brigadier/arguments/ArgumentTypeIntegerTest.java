@@ -13,27 +13,27 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.mojang.brigadier.arguments.DoubleArgumentType.doubleArg;
+import static com.mojang.brigadier.arguments.ArgumentTypeInteger.integer;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DoubleArgumentTypeTest {
-    private DoubleArgumentType type;
+public class ArgumentTypeIntegerTest {
+    private ArgumentTypeInteger type;
     @Mock
     private CommandContextBuilder<Object> context;
 
     @Before
     public void setUp() throws Exception {
-        type = doubleArg(-100, 100);
+        type = integer(-100, 100);
     }
 
     @Test
     public void parse() throws Exception {
         final StringReader reader = new StringReader("15");
-        assertThat(doubleArg().parse(reader), is(15.0));
+        assertThat(integer().parse(reader), is(15));
         assertThat(reader.canRead(), is(false));
     }
 
@@ -41,10 +41,10 @@ public class DoubleArgumentTypeTest {
     public void parse_tooSmall() throws Exception {
         final StringReader reader = new StringReader("-5");
         try {
-            doubleArg(0, 100).parse(reader);
+            integer(0, 100).parse(reader);
             fail();
         } catch (final CommandSyntaxException ex) {
-            assertThat(ex.getType(), is(CommandSyntaxException.BUILT_IN_EXCEPTIONS.doubleTooLow()));
+            assertThat(ex.getType(), is(CommandSyntaxException.BUILT_IN_EXCEPTIONS.integerTooLow()));
             assertThat(ex.getCursor(), is(0));
         }
     }
@@ -53,10 +53,10 @@ public class DoubleArgumentTypeTest {
     public void parse_tooBig() throws Exception {
         final StringReader reader = new StringReader("5");
         try {
-            doubleArg(-100, 0).parse(reader);
+            integer(-100, 0).parse(reader);
             fail();
         } catch (final CommandSyntaxException ex) {
-            assertThat(ex.getType(), is(CommandSyntaxException.BUILT_IN_EXCEPTIONS.doubleTooHigh()));
+            assertThat(ex.getType(), is(CommandSyntaxException.BUILT_IN_EXCEPTIONS.integerTooHigh()));
             assertThat(ex.getCursor(), is(0));
         }
     }
@@ -64,18 +64,18 @@ public class DoubleArgumentTypeTest {
     @Test
     public void testEquals() throws Exception {
         new EqualsTester()
-            .addEqualityGroup(doubleArg(), doubleArg())
-            .addEqualityGroup(doubleArg(-100, 100), doubleArg(-100, 100))
-            .addEqualityGroup(doubleArg(-100, 50), doubleArg(-100, 50))
-            .addEqualityGroup(doubleArg(-50, 100), doubleArg(-50, 100))
+            .addEqualityGroup(integer(), integer())
+            .addEqualityGroup(integer(-100, 100), integer(-100, 100))
+            .addEqualityGroup(integer(-100, 50), integer(-100, 50))
+            .addEqualityGroup(integer(-50, 100), integer(-50, 100))
             .testEquals();
     }
 
     @Test
     public void testToString() throws Exception {
-        assertThat(doubleArg(), hasToString("double()"));
-        assertThat(doubleArg(-100), hasToString("double(-100.0)"));
-        assertThat(doubleArg(-100, 100), hasToString("double(-100.0, 100.0)"));
-        assertThat(doubleArg(Integer.MIN_VALUE, 100), hasToString("double(-2.147483648E9, 100.0)"));
+        assertThat(integer(), hasToString("integer()"));
+        assertThat(integer(-100), hasToString("integer(-100)"));
+        assertThat(integer(-100, 100), hasToString("integer(-100, 100)"));
+        assertThat(integer(Integer.MIN_VALUE, 100), hasToString("integer(-2147483648, 100)"));
     }
 }

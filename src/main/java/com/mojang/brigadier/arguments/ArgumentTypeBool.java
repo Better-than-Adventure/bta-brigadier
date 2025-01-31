@@ -13,14 +13,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 
-public class BoolArgumentType implements ArgumentType<Boolean> {
+public class ArgumentTypeBool implements ArgumentType<Boolean> {
     private static final Collection<String> EXAMPLES = Arrays.asList("true", "false");
 
-    private BoolArgumentType() {
+    private ArgumentTypeBool() {
     }
 
-    public static BoolArgumentType bool() {
-        return new BoolArgumentType();
+    public static ArgumentTypeBool bool() {
+        return new ArgumentTypeBool();
     }
 
     public static boolean getBool(final CommandContext<?> context, final String name) {

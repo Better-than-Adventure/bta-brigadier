@@ -8,21 +8,21 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.brigadier.tree.ArgumentCommandNode;
 import com.mojang.brigadier.tree.CommandNode;
 
-public class RequiredArgumentBuilder<S, T> extends ArgumentBuilder<S, RequiredArgumentBuilder<S, T>> {
+public class ArgumentBuilderRequired<S, T> extends ArgumentBuilder<S, ArgumentBuilderRequired<S, T>> {
     private final String name;
     private final ArgumentType<T> type;
     private SuggestionProvider<S> suggestionsProvider = null;
 
-    private RequiredArgumentBuilder(final String name, final ArgumentType<T> type) {
+    private ArgumentBuilderRequired(final String name, final ArgumentType<T> type) {
         this.name = name;
         this.type = type;
     }
 
-    public static <S, T> RequiredArgumentBuilder<S, T> argument(final String name, final ArgumentType<T> type) {
-        return new RequiredArgumentBuilder<>(name, type);
+    public static <S, T> ArgumentBuilderRequired<S, T> argument(final String name, final ArgumentType<T> type) {
+        return new ArgumentBuilderRequired<>(name, type);
     }
 
-    public RequiredArgumentBuilder<S, T> suggests(final SuggestionProvider<S> provider) {
+    public ArgumentBuilderRequired<S, T> suggests(final SuggestionProvider<S> provider) {
         this.suggestionsProvider = provider;
         return getThis();
     }
@@ -32,7 +32,7 @@ public class RequiredArgumentBuilder<S, T> extends ArgumentBuilder<S, RequiredAr
     }
 
     @Override
-    protected RequiredArgumentBuilder<S, T> getThis() {
+    protected ArgumentBuilderRequired<S, T> getThis() {
         return this;
     }
 

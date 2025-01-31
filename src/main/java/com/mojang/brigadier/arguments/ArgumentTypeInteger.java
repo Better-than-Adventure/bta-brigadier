@@ -10,27 +10,27 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class IntegerArgumentType implements ArgumentType<Integer> {
+public class ArgumentTypeInteger implements ArgumentType<Integer> {
     private static final Collection<String> EXAMPLES = Arrays.asList("0", "123", "-123");
 
     private final int minimum;
     private final int maximum;
 
-    private IntegerArgumentType(final int minimum, final int maximum) {
+    private ArgumentTypeInteger(final int minimum, final int maximum) {
         this.minimum = minimum;
         this.maximum = maximum;
     }
 
-    public static IntegerArgumentType integer() {
+    public static ArgumentTypeInteger integer() {
         return integer(Integer.MIN_VALUE);
     }
 
-    public static IntegerArgumentType integer(final int min) {
+    public static ArgumentTypeInteger integer(final int min) {
         return integer(min, Integer.MAX_VALUE);
     }
 
-    public static IntegerArgumentType integer(final int min, final int max) {
-        return new IntegerArgumentType(min, max);
+    public static ArgumentTypeInteger integer(final int min, final int max) {
+        return new ArgumentTypeInteger(min, max);
     }
 
     public static int getInteger(final CommandContext<?> context, final String name) {
@@ -63,9 +63,9 @@ public class IntegerArgumentType implements ArgumentType<Integer> {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (!(o instanceof IntegerArgumentType)) return false;
+        if (!(o instanceof ArgumentTypeInteger)) return false;
 
-        final IntegerArgumentType that = (IntegerArgumentType) o;
+        final ArgumentTypeInteger that = (ArgumentTypeInteger) o;
         return maximum == that.maximum && minimum == that.minimum;
     }
 

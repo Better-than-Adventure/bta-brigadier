@@ -6,19 +6,19 @@ package com.mojang.brigadier.builder;
 import com.mojang.brigadier.tree.CommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 
-public class LiteralArgumentBuilder<S> extends ArgumentBuilder<S, LiteralArgumentBuilder<S>> {
+public class ArgumentBuilderLiteral<S> extends ArgumentBuilder<S, ArgumentBuilderLiteral<S>> {
     private final String literal;
 
-    protected LiteralArgumentBuilder(final String literal) {
+    protected ArgumentBuilderLiteral(final String literal) {
         this.literal = literal;
     }
 
-    public static <S> LiteralArgumentBuilder<S> literal(final String name) {
-        return new LiteralArgumentBuilder<>(name);
+    public static <S> ArgumentBuilderLiteral<S> literal(final String name) {
+        return new ArgumentBuilderLiteral<>(name);
     }
 
     @Override
-    protected LiteralArgumentBuilder<S> getThis() {
+    protected ArgumentBuilderLiteral<S> getThis() {
         return this;
     }
 

@@ -10,27 +10,27 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class FloatArgumentType implements ArgumentType<Float> {
+public class ArgumentTypeFloat implements ArgumentType<Float> {
     private static final Collection<String> EXAMPLES = Arrays.asList("0", "1.2", ".5", "-1", "-.5", "-1234.56");
 
     private final float minimum;
     private final float maximum;
 
-    private FloatArgumentType(final float minimum, final float maximum) {
+    private ArgumentTypeFloat(final float minimum, final float maximum) {
         this.minimum = minimum;
         this.maximum = maximum;
     }
 
-    public static FloatArgumentType floatArg() {
+    public static ArgumentTypeFloat floatArg() {
         return floatArg(-Float.MAX_VALUE);
     }
 
-    public static FloatArgumentType floatArg(final float min) {
+    public static ArgumentTypeFloat floatArg(final float min) {
         return floatArg(min, Float.MAX_VALUE);
     }
 
-    public static FloatArgumentType floatArg(final float min, final float max) {
-        return new FloatArgumentType(min, max);
+    public static ArgumentTypeFloat floatArg(final float min, final float max) {
+        return new ArgumentTypeFloat(min, max);
     }
 
     public static float getFloat(final CommandContext<?> context, final String name) {
@@ -63,9 +63,9 @@ public class FloatArgumentType implements ArgumentType<Float> {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (!(o instanceof FloatArgumentType)) return false;
+        if (!(o instanceof ArgumentTypeFloat)) return false;
 
-        final FloatArgumentType that = (FloatArgumentType) o;
+        final ArgumentTypeFloat that = (ArgumentTypeFloat) o;
         return maximum == that.maximum && minimum == that.minimum;
     }
 

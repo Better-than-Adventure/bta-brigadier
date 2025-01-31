@@ -13,7 +13,7 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mojang.brigadier.builder.LiteralArgumentBuilder.literal;
+import static com.mojang.brigadier.builder.ArgumentBuilderLiteral.literal;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;

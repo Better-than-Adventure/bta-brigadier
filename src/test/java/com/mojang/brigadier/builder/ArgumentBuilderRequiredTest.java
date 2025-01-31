@@ -12,17 +12,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.mojang.brigadier.arguments.IntegerArgumentType.integer;
-import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
+import static com.mojang.brigadier.arguments.ArgumentTypeInteger.integer;
+import static com.mojang.brigadier.builder.ArgumentBuilderRequired.argument;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RequiredArgumentBuilderTest {
+public class ArgumentBuilderRequiredTest {
     @Mock
     private ArgumentType<Integer> type;
-    private RequiredArgumentBuilder<Object, Integer> builder;
+    private ArgumentBuilderRequired<Object, Integer> builder;
     @Mock
     private
     Command<Object> command;

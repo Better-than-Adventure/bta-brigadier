@@ -6,7 +6,7 @@ package com.mojang.brigadier.tree;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.RedirectModifier;
 import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.ArgumentBuilderLiteral;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.context.CommandContextBuilder;
 import com.mojang.brigadier.context.StringRange;
@@ -105,8 +105,8 @@ public class LiteralCommandNode<S> extends CommandNode<S> {
     }
 
     @Override
-    public LiteralArgumentBuilder<S> createBuilder() {
-        final LiteralArgumentBuilder<S> builder = LiteralArgumentBuilder.literal(this.literal);
+    public ArgumentBuilderLiteral<S> createBuilder() {
+        final ArgumentBuilderLiteral<S> builder = ArgumentBuilderLiteral.literal(this.literal);
         builder.requires(getRequirement());
         builder.forward(getRedirect(), getRedirectModifier(), isFork());
         if (getCommand() != null) {
