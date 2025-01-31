@@ -167,7 +167,14 @@ public class StringReader implements ImmutableStringReader {
     }
 
     public static boolean isAllowedInUnquotedString(final char c) {
-        return c != ' ' && c != '/' && c != '\\';
+        return
+            (
+                c != ' ' &&
+                c != '/' &&
+                c != '\\' &&
+                c != '\"' &&
+                c != '\''
+            );
     }
 
     public String readUnquotedString() {
